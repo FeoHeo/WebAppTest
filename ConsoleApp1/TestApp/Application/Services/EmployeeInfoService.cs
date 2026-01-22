@@ -36,7 +36,7 @@ public class EmployeeInfoService : IEmployeeInfoService
 
     public void AddEmployee(EmployeeInfo employeeInput)
     {
-        _db.Add(employeeInput);
+        _db.EmployeeInfo.Add(employeeInput);
         _db.SaveChanges();
     }
 
