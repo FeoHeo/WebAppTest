@@ -20,6 +20,8 @@ builder.Services.AddDbContext<UserDbContext>(options =>
 builder.Services.AddDbContext<EmployeeDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IEmployeeWorkInfoService , EmployeeWorkInfoService>();
+builder.Services.AddScoped<IEmployeeGovIdService , EmployeeGovIdService>();
 builder.Services.AddScoped<IEmployeeInfoService , EmployeeInfoService>();
 builder.Services.AddSingleton<IUserService, UserService>(); // configure these later
 builder.Services.AddScoped<IWeatherService, WeatherService>();
