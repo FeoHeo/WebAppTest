@@ -5,6 +5,9 @@ using TestApp.Application.Services.DataTypes;
 
 namespace TestApp.WebApi.Controllers;
 
+[ApiController]
+[Route("User")]
+[Route("User/[action]")]
 public class UserController : Controller
 {
     private readonly IUserService _userService;
@@ -14,12 +17,13 @@ public class UserController : Controller
         _userService = userService;
     }
 
+    [HttpGet]
     public IActionResult Index()
     {
         return Content("Controller is working");
     }
 
-    [HttpGet("/UserList")]
+    [HttpGet("list")]
     public IActionResult UserList(int? pageNum , int? pageSize)
     {
         var listed = _userService.GetUserPage(pageNum , pageSize);

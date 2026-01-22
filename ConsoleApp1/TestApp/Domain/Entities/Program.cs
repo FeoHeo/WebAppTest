@@ -13,10 +13,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddControllersWithViews();
+// Build the database connections
 builder.Services.AddDbContext<UserDbContext>(options => 
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddSingleton<IUserService, UserService>();
+builder.Services.AddDbContext<EmployeeDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IEmployeeInfoService , EmployeeInfoService>();
+builder.Services.AddSingleton<IUserService, UserService>(); // configure these later
 builder.Services.AddScoped<IWeatherService, WeatherService>();
 var app = builder.Build();
 
