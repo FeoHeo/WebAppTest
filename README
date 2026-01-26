@@ -1,1 +1,16 @@
-README
+Add file appsettings.json into ConsoleApp/TestApp/
+
+Add database connection info into appsettings.info:
+
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=1.2.3.4,1433;Database=SAMPLE_DB;User Id=user;Password=112233;Encrypt=True;TrustServerCertificate=True;"
+  }
+}
