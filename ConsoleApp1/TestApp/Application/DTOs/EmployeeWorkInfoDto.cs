@@ -2,7 +2,7 @@ namespace TestApp.Application.DTOs;
 
 public class EmployeeWorkInfoDto
 {
-    public EmployeeWorkInfoDto(int eIdInput , int pIdInput , int dIdInput , int wIdInput , uint salaryInput)
+    public EmployeeWorkInfoDto(int eIdInput , int pIdInput , int dIdInput , int wIdInput , int salaryInput)
     {
         employeeId = eIdInput;
         positionId = pIdInput;
@@ -15,5 +15,5 @@ public class EmployeeWorkInfoDto
     public int positionId { get; set; }
     public int departmentId { get; set; }
     public int workStatusId { get; set; }
-    public uint baseSalary { get; set; }
+    public int baseSalary { get; set; }
 }

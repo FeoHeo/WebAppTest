@@ -29,7 +29,7 @@ public class EmployeeGovIdController : Controller
         var listed = _eGovService.GetGovIdPage(pageNum, pageSize);
         return Ok(listed);
     }
-
+    
     [HttpPost("add")]
     public IActionResult GovIdAdd([FromBody] EmployeeGovId govIdInput)
     {

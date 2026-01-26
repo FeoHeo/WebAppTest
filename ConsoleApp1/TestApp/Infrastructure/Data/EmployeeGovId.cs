@@ -5,7 +5,7 @@ namespace TestApp.Infrastructure.Data;
 public class EmployeeGovId
 {
     [Key]
-    public int employeeGovId { get; set; } // PK
+    public string govId { get; set; } // PK
     
     public int employeeId { get; set; } // FK
     public DateTime govIdIssueDate { get; set; }
