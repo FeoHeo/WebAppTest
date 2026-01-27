@@ -25,6 +25,16 @@ builder.Services.AddScoped<IEmployeeGovIdService , EmployeeGovIdService>();
 builder.Services.AddScoped<IEmployeeInfoService , EmployeeInfoService>();
 builder.Services.AddSingleton<IUserService, UserService>(); // configure these later
 builder.Services.AddScoped<IWeatherService, WeatherService>();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("DevCors", policy =>
+    {
+        policy.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,7 +42,7 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
-
+app.UseCors("DevCors");
 // Map controller
 app.MapControllerRoute(
     name: "default",

@@ -16,7 +16,7 @@ public class EmployeeInfoService : IEmployeeInfoService
     }
     
     
-    public List<EmployeeInfoDto> GetEmployeePage(int? pageNum, int? pageSize)
+    public List<EmployeeInfo> GetEmployeePage(int? pageNum, int? pageSize)
     {
         var pageFind = pageNum ?? 1;
         var pageNumFind = pageSize ?? 5;
@@ -28,7 +28,7 @@ public class EmployeeInfoService : IEmployeeInfoService
             .OrderBy(e => e.employeeId)   
             .Skip((pageFind - 1) * pageNumFind)
             .Take(pageNumFind)
-            .Select(e => new EmployeeInfoDto(e.employeeId, e.name, e.birthdate))
+            //.Select(e => new EmployeeInfoDto(e.employeeId, e.name, e.birthdate , e.employeeCode))
             .ToList();
         return listed;
 
@@ -40,17 +40,21 @@ public class EmployeeInfoService : IEmployeeInfoService
         _db.SaveChanges();
     }
 
-    public void DeleteEmployee(int targetId)
+    public void DeleteEmployee(string targetCode)
     {
-        var eRemove = _db.EmployeeInfo.Find(targetId);
+        var eRemove = _db.EmployeeInfo.FirstOrDefault(e => e.employeeCode == targetCode);
         _db.EmployeeInfo.Remove(eRemove);
         _db.SaveChanges();
     }
 
-    public void UpdateEmployee(int targetId, EmployeeInfo employeeInput)
+    public void UpdateEmployee(string targetCode, EmployeeInfo employeeInput)
     {
-        var eUpdate = _db.EmployeeInfo.Find(targetId);
-        eUpdate = employeeInput;
+        var eUpdate = _db.EmployeeInfo.FirstOrDefault(e => e.employeeCode == targetCode);
+        eUpdate.name = employeeInput.name;
+        eUpdate.birthdate = employeeInput.birthdate;
+        eUpdate.isMale = employeeInput.isMale;
+        eUpdate.email = employeeInput.email;
+        eUpdate.phoneNum = employeeInput.phoneNum;
         _db.SaveChanges();
     }
 

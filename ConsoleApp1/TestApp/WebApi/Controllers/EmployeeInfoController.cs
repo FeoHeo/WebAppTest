@@ -24,24 +24,24 @@ public class EmployeeInfoController : Controller
         return Ok("Employee Route is working");
     }
 
-    [HttpGet("list")]
+    [HttpGet("")]
     public IActionResult EmployeeList(int? pageNum, int? pageSize)
     {
         var listed = _eInfoService.GetEmployeePage(pageNum, pageSize);
         return Ok(listed);
     }
 
-    [HttpPost("add")]
+    [HttpPost("")]
     public IActionResult EmployeeAdd([FromBody] EmployeeInfo employeeInput)
     {
         _eInfoService.AddEmployee(employeeInput);
         return Ok();
     }
 
-    [HttpDelete("delete/{idInput:int}")]
-    public IActionResult EmployeeDelete(int idInput)
+    [HttpDelete("{codeInput}")]
+    public IActionResult EmployeeDelete(string codeInput)
     {
-        _eInfoService.DeleteEmployee(idInput);
+        _eInfoService.DeleteEmployee(codeInput);
         return Ok();
     }
 
@@ -51,10 +51,10 @@ public class EmployeeInfoController : Controller
         return Ok(_eInfoService.GetEmployeeSpecific(idInput));
     }
 
-    [HttpPut("update/{idInput:int}")]
-    public IActionResult EmployeeUpdate(int idInput , [FromBody] EmployeeInfo employeeInput)
+    [HttpPut("{codeInput}")]
+    public IActionResult EmployeeUpdate(string codeInput, [FromBody] EmployeeInfo employeeInput)
     {
-        _eInfoService.UpdateEmployee(idInput , employeeInput);
+        _eInfoService.UpdateEmployee(codeInput , employeeInput);
         return Ok();
     }
     

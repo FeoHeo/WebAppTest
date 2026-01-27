@@ -5,13 +5,13 @@ namespace TestApp.Application.Interfaces;
 
 public interface IEmployeeInfoService
 {
-    List<EmployeeInfoDto> GetEmployeePage(int? pageNum, int? pageSize);
+    List<EmployeeInfo> GetEmployeePage(int? pageNum, int? pageSize);
 
     EmployeeInfo GetEmployeeSpecific(int targetId);
 
     void AddEmployee(EmployeeInfo employeeInput);
         
-    void UpdateEmployee(int targetId, EmployeeInfo employeeInput);
+    void UpdateEmployee(string targetCode, EmployeeInfo employeeInput);
 
-    void DeleteEmployee(int targetId);
+    void DeleteEmployee(string targetCode);
 }
